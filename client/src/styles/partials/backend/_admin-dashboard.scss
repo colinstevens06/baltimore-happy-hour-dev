@@ -1,15 +1,26 @@
 .backend-container {
   display: grid;
   grid-template-rows: 80px auto;
+  grid-template-columns: 150px auto 150px;
   overflow: hidden;
-  margin: 16px auto 16px auto;
-  min-width: 800px;
-  width: 80%;
-  max-width: 1200px;
+  width: 100%;
+  margin-top: 32px;
+  // 100vh - navHeight - marginTop
   min-height: calc(100vh - 60px - 32px);
 
 
+  .header-row {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .results-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
 
 
 
 }
+
+
