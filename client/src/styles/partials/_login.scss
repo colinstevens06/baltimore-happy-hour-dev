@@ -1,0 +1,90 @@
+.container__login {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(40, 40, 40, 0.25);
+  }
+}
+
+.bg-image__login {
+  background-image: url('../assets/images/landing-page/baltimore-happy-hour-hero.jpg');
+  background-size: cover;
+}
+
+.container__login-box {
+  min-width: 500px;
+  height: 50%;
+  min-height: fit-content;
+  align-self: center;
+  border: 1px solid #707070;
+  background: rgba(247, 247, 247, 0.8);
+  border-radius: 5px;
+  z-index: 1;
+  box-shadow: $shadow-1;
+  padding: 18px 24px;
+
+  .header__login-box {
+    display: grid;
+    grid-template-columns: 100px auto;
+    gap: 20px;
+    min-height: 100px;
+    align-items: center;
+  
+      .logo {
+        background-image: url('../assets/logos/baltimore-happy-hour-logo-black.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 50px;
+        height: 50px;
+        justify-self: center;
+      }
+  
+    // }
+    h1 {
+      font-family: $Lobster;
+      font-size: 2rem;
+      align-self: center;
+    }
+  }
+
+  form {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    gap: 5px;
+    
+    input, button {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 1.25rem;
+    }
+
+    button {
+      cursor: pointer;
+      transition: .5s;
+      &:hover {
+        transition: .5s;
+
+      }
+    }
+
+  }
+
+  .reset-password {
+    margin-top: 15px;
+    font-size: .75rem;
+    text-align: center;
+  }
+
+
+}
+

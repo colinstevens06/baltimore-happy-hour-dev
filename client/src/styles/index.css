@@ -1,0 +1,118 @@
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body, html {
+  min-height: 100vh;
+}
+
+.container__login {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container__login::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(40, 40, 40, 0.25);
+}
+
+.bg-image__login {
+  background-image: url("../assets/images/landing-page/baltimore-happy-hour-hero.jpg");
+  background-size: cover;
+}
+
+.container__login-box {
+  min-width: 500px;
+  height: 50%;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border: 1px solid #707070;
+  background: rgba(247, 247, 247, 0.8);
+  border-radius: 5px;
+  z-index: 1;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  padding: 18px 24px;
+}
+
+.container__login-box .header__login-box {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px auto;
+      grid-template-columns: 100px auto;
+  gap: 20px;
+  min-height: 100px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container__login-box .header__login-box .logo {
+  background-image: url("../assets/logos/baltimore-happy-hour-logo-black.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+.container__login-box .header__login-box h1 {
+  font-family: "Lobster", cursive;
+  font-size: 2rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.container__login-box form {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  gap: 5px;
+}
+
+.container__login-box form input, .container__login-box form button {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1.25rem;
+}
+
+.container__login-box form button {
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.container__login-box form button:hover {
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.container__login-box .reset-password {
+  margin-top: 15px;
+  font-size: .75rem;
+  text-align: center;
+}
+/*# sourceMappingURL=index.css.map */
