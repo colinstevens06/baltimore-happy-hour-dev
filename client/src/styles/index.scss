@@ -13,4 +13,8 @@ body, html {
   min-height: 100vh;
 }
 
+@import './partials/nav';
 @import './partials/login';
+
+// Backend
+@import './partials/backend/admin-dashboard';

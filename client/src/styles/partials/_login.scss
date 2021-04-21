@@ -71,8 +71,11 @@
     button {
       cursor: pointer;
       transition: .5s;
+      background-color: $secondaryColor;
+      color: $primaryColor;
       &:hover {
         transition: .5s;
+        background-color: $secondaryColorDark;
 
       }
     }

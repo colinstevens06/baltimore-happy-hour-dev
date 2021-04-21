@@ -1,0 +1,15 @@
+.backend-container {
+  display: grid;
+  grid-template-rows: 80px auto;
+  overflow: hidden;
+  margin: 16px auto 16px auto;
+  min-width: 800px;
+  width: 80%;
+  max-width: 1200px;
+  min-height: calc(100vh - 60px - 32px);
+
+
+
+
+
+}
