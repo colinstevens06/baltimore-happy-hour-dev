@@ -18,7 +18,7 @@ export default function Admin() {
         setAllRestaurants(res.data)
         console.log(res.data)
       })
-      .catch(err => console.log("Terror", err))
+      .catch(err => console.log(err))
   }
 
 
@@ -27,12 +27,12 @@ export default function Admin() {
     <div className="backend-container">
       <div className="header-row">
         <h1>All Restaurants</h1>
-        <p>Click through the tabs to edit your information. Don’t forget to save!</p>
+        <p>Click a restaurant below to edit its information.</p>
       </div>
       <div className="results-container">
         {allRestaurants &&
           allRestaurants.map(card => {
-            <DashRestaurantCard
+            return <DashRestaurantCard
               key={card._id}
               slug={card.slug}
               name={card.name}

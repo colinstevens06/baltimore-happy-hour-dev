@@ -13,8 +13,14 @@ body, html {
   min-height: 100vh;
 }
 
+a:-webkit-any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 @import './partials/nav';
 @import './partials/login';
 
 // Backend
 @import './partials/backend/admin-dashboard';
+@import './partials/backend/restaurant-editor';

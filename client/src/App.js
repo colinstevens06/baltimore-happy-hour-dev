@@ -10,6 +10,7 @@ import Admin from './pages/backend/Admin'
 // Importing Firebase for authentication
 import { AuthProvider } from './context/AuthContext';
 import Nav from './components/global/Nav'
+import SingleStore from './pages/backend/SingleStore'
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Nav />
           <Switch>
             <PrivateRoute exact path="/content-management-system" component={Admin} />
+            <PrivateRoute exact path="/content-management-system/:slug" component={SingleStore} />
             <Route exact path="/" component={Login} />
           </Switch>
 

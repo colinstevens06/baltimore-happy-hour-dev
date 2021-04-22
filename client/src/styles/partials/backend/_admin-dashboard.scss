@@ -12,11 +12,45 @@
   .header-row {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    padding: 8px 12px;
+
   }
 
   .results-container {
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    row-gap: 25px;
+    column-gap: 10px;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(12,1fr);
+    margin-right: -12px;
+    margin-top: 32px;
+
+
+    .dash-card {
+      display: block;
+      cursor: pointer;
+      grid-column: auto/span 3;
+      float: none;
+      min-width: 0;
+      width: auto;
+      max-width: 372px;
+      overflow: visible;
+      transition: .38s;
+      padding: 8px 12px;
+
+      &:hover {
+        transition: .38s;
+        background-color: #e7e7e7;
+  
+      }
+
+
+
+    }
   }
 
 
