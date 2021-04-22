@@ -40,29 +40,30 @@ export default function GeneralInfo(props) {
 
       <div className="col-1 label">Sports Bar</div>
       <div className="col-2">
-        <button className="yes-no-box">Yes</button>
-        <button className="yes-no-box selected">No</button>
+        <button type="button" className={props.restaurant.features.sports.sportsBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
+        <button type="button" className={props.restaurant.features.sports.sportsBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
       </div>
       <div className="col-1 label">Games</div>
       <div className="col-2">
-        <button className="yes-no-box">Yes</button>
-        <button className="yes-no-box selected">No</button>
+        <button type="button" className={props.restaurant.features.games.gamesBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
+        <button type="button" className={props.restaurant.features.games.gamesBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
       </div>
       <div className="col-1 label">Music</div>
       <div className="col-2">
-        <div className="yes-no-box">Live</div>
-        <div className="yes-no-box selected">Jukebox</div>
-        <div className="yes-no-box">Dance Floor</div>
+        <button type="button" className={props.restaurant.features.music.liveMusic === true ? "yes-no-box selected" : "yes-no-box"}>Live</button>
+        <button type="button" className={props.restaurant.features.music.jukebox === true ? "yes-no-box selected" : "yes-no-box"}>Jukebox</button>
+        <button type="button" className={props.restaurant.features.music.dj === true ? "yes-no-box selected" : "yes-no-box"}>DJ</button>
+        <button type="button" className={props.restaurant.features.music.danceFloor === true ? "yes-no-box selected" : "yes-no-box"}>Dance Floor</button>
       </div>
       <div className="col-1 label">Outdoor Seating</div>
       <div className="col-2">
-        <button className="yes-no-box selected">Yes</button>
-        <button className="yes-no-box">No</button>
+        <button type="button" className={props.restaurant.features.outdoorSeating === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
+        <button type="button" className={props.restaurant.features.outdoorSeating === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
       </div>
       <div className="col-1 label">Trivia</div>
       <div className="col-2">
-        <button className="yes-no-box">Yes</button>
-        <button className="yes-no-box selected">No</button>
+        <button type="button" className={props.restaurant.features.trivia.triviaBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
+        <button type="button" className={props.restaurant.features.trivia.triviaBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
       </div>
 
 
