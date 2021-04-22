@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import GeneralInfo from '../../components/backend/editor/GeneralInfo';
+import TabNav from '../../components/backend/editor/TabNav';
 
 // Utilities
 import API from '../../utils/API';
@@ -7,17 +9,17 @@ import API from '../../utils/API';
 export default function SingleStore() {
 
   const [restaurant, setRestaurant] = useState({})
-  const [currentTab, setCurrentTab] = useState("general-info")
   const [loading, setLoading] = useState(true)
+  const [selectedTab, setSelectedTab] = useState('general-info')
 
-  // info so I know what info to get
+  // get slug from the URL
   const { slug } = useParams()
 
   // get restaurant info
 
   useEffect(() => {
     getAPI(slug)
-  })
+  }, [])
 
   // function to hit the API for this restaurant's info
   const getAPI = () => {
@@ -28,6 +30,10 @@ export default function SingleStore() {
 
       })
       .catch(err => console.log(err))
+  }
+
+  const tabChange = (input) => {
+    setSelectedTab(input)
   }
 
 
@@ -41,19 +47,15 @@ export default function SingleStore() {
         <p>Click through the tabs to edit your information. Don’t forget to save!</p>
       </div>
       <div className="tabbed-content-container">
-        <div className="tabs">
-
-          <button className="active-tab">General Info</button>
-          <button>Sunday</button>
-          <button>Monday</button>
-          <button>Tuesday</button>
-          <button>Wednesday</button>
-          <button>Thursday</button>
-          <button>Friday</button>
-          <button>Saturday</button>
+        <TabNav tabChange={tabChange} />
+        <div className="content-window">
+          {
+            selectedTab === 'general-info' ?
+              <GeneralInfo restaurant={restaurant} /> :
+              "Other Info"
+          }
 
         </div>
-        <div>Placeholder</div>
 
       </div>
 

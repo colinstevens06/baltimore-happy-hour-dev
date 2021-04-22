@@ -11,6 +11,7 @@
 
 body, html {
   min-height: 100vh;
+  background: linear-gradient(45deg, #FCFCFC, #e9e9e9);
 }
 
 a:-webkit-any-link {
@@ -253,7 +254,8 @@ a:-webkit-any-link {
   -ms-grid-rows: 50px auto;
       grid-template-rows: 50px auto;
   row-gap: 15px;
-  padding: 8px 12px;
+  background: #ffffff;
+  margin-top: 25px;
 }
 
 .backend-container .tabbed-content-container .tabs {
@@ -268,6 +270,7 @@ a:-webkit-any-link {
   cursor: pointer;
   border: none;
   border-right: 0.1em solid #e9e9e9;
+  border-bottom: 0.1em solid #e9e9e9;
   -webkit-transition: .5s;
   transition: .5s;
 }
@@ -283,5 +286,40 @@ a:-webkit-any-link {
 .backend-container .tabbed-content-container .tabs button.active-tab {
   background-color: #1b1b1b;
   color: #fff020;
+}
+
+.backend-container .tabbed-content-container .content-window {
+  padding: 25px 50px;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 150px auto;
+      grid-template-columns: 150px auto;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  row-gap: 15px;
+  width: 100%;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info .col-header {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/span 3;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info .col-1 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info .col-2 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
 }
 /*# sourceMappingURL=index.css.map */
