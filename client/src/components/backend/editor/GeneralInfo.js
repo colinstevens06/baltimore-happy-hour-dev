@@ -43,30 +43,30 @@ export default function GeneralInfo(props) {
       <div className="col-1 label">Street Address</div>
       <input type="text" className="col-2 info" value={props.restaurant.location.streetLineOne} name='streetLineOne' onChange={props.handleInputChange} />
       <div className="col-1 label">City</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.city.name} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.city.name} name="name" onChange={props.handleInputChange} />
       <div className="col-1 label">Neighborhood</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.city.neighborhood} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.city.neighborhood} name="neighborhood" onChange={props.handleInputChange} />
       <div className="col-1 label">Zip Code</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.zip} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.zip} onChange={props.handleInputChange} name="zip" />
       <div className="col-1 label">Phone</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.phone} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.phone} onChange={props.handleInputChange} name="phone" />
 
       {/* HOURS INFO */}
       <h2 className="col-header" style={{ marginTop: 25 }}>Hours</h2>
       <div className="col-1 label">Sunday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[0].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[0].time} name="hour-0" onChange={props.handleInputChange} />
       <div className="col-1 label">Monday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[1].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[1].time} name="hour-1" onChange={props.handleInputChange} />
       <div className="col-1 label">Tuesday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[2].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[2].time} name="hour-2" onChange={props.handleInputChange} />
       <div className="col-1 label">Wednesday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[3].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[3].time} name="hour-3" onChange={props.handleInputChange} />
       <div className="col-1 label">Thursday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[4].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[4].time} name="hour-4" onChange={props.handleInputChange} />
       <div className="col-1 label">Friday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[5].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[5].time} name="hour-5" onChange={props.handleInputChange} />
       <div className="col-1 label">Saturday</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.hours[6].time} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.hours[6].time} name="hour-6" onChange={props.handleInputChange} />
 
       {/* FEATURES INFO */}
       <h2 className="col-header" style={{ marginTop: 25 }}>Features</h2>

@@ -39,21 +39,60 @@ export default function SingleStore() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    setRestaurant(
-      {
+    console.log(name)
+    if (name === "streetLineOne" || name === "zip" || name === "phone") {
+      console.log("if statement 1st arg")
+      setRestaurant({
         ...restaurant,
         location: {
           ...restaurant.location,
           [name]: value
         }
       })
+    } else if (name === "name" || name === "neighborhood") {
+      console.log("else statement")
+      setRestaurant({
+        ...restaurant,
+        location: {
+          ...restaurant.location,
+          city: {
+            ...restaurant.location.city,
+            [name]: value
+          }
+        }
+      })
+    } else if (name === "hour-0" || name === "hour-1" || name === "hour-2" || name === "hour-3" || name === "hour-4" || name === "hour-5" || name === "hour-6") {
+      console.log("UPDATE HOURS")
+      let index = name[name.length - 1]
+      let allHours = restaurant.location.hours
+      let theseHours = allHours[index]
+      console.log(index)
+      console.log("theseHours", theseHours)
+      let newListing = {
+        ...theseHours,
+        time: value
+      }
+      console.log("newListing", newListing)
 
-    console.log(restaurant)
+      allHours[index] = newListing
+
+      console.log("allHours", allHours)
+
+
+      setRestaurant({
+        ...restaurant,
+        location: {
+          ...restaurant.location,
+          hours: allHours
+        }
+      })
+
+      console.log(restaurant)
 
 
 
 
+    }
   }
 
 
