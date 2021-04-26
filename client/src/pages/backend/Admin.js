@@ -7,6 +7,7 @@ import API from '../../utils/API'
 export default function Admin() {
   const [allRestaurants, setAllRestaurants] = useState(undefined)
 
+
   useEffect(() => {
     getAPI()
   }, [])

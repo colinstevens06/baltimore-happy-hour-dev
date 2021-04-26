@@ -72,6 +72,18 @@
           }
         }
 
+        input {
+          border: 1px solid transparent;
+          cursor: pointer;
+          transition: .2s;
+          padding: 4px;
+          font-weight: 300;
+          &:hover {
+            transition: .2s;
+            border: 1px solid #577cff;
+          }
+        }
+
       }
 
     }

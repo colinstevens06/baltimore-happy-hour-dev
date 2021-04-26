@@ -1,14 +1,47 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function GeneralInfo(props) {
 
-  console.log(props)
+  const [thisInfo, setThisInfo] = useState({})
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setThisInfo(props.restaurant)
+    setLoading(false)
+    // setStreetAddress(props.restaurant.location.streetLineOne)
+
+
+  }, [])
+
+  // useEffect(() => {
+  //   setLoading(false)
+
+  // }, [thisInfo])
+
+
+
+
+  // i have an object that has all the restaurant info
+
+  // i want to update that info as the user updates the form
+
+  // i want that form info to be a state object that is used to update the DB when the user clicks save
+
+  // so I need to be able to handle input changes at the UI, and when the user updates that info, I need it to update the overarching object
+
+  // what I need to do is figure out how to do it with one line, one input, and then it'll work for all of them
+
+  // first hting i need to do is update the streetInfo, that lives in the overarching location branch of the main object
+
+
+
   return (
+    !loading &&
     <form className="grid__general-info">
       {/* LOCATION INFO */}
       <h2 className="col-header">Location</h2>
       <div className="col-1 label">Street Address</div>
-      <input type="text" className="col-2 info" value={props.restaurant.location.streetLineOne} />
+      <input type="text" className="col-2 info" value={props.restaurant.location.streetLineOne} name='streetLineOne' onChange={props.handleInputChange} />
       <div className="col-1 label">City</div>
       <input type="text" className="col-2 info" value={props.restaurant.location.city.name} />
       <div className="col-1 label">Neighborhood</div>

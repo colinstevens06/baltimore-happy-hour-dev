@@ -340,4 +340,19 @@ a:-webkit-any-link {
   background-color: #1b1b1b;
   color: #fff020;
 }
+
+.backend-container .tabbed-content-container .content-window .grid__general-info input {
+  border: 1px solid transparent;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+  padding: 4px;
+  font-weight: 300;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info input:hover {
+  -webkit-transition: .2s;
+  transition: .2s;
+  border: 1px solid #577cff;
+}
 /*# sourceMappingURL=index.css.map */

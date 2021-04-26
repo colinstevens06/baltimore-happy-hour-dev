@@ -19,6 +19,7 @@ export default function SingleStore() {
 
   useEffect(() => {
     getAPI(slug)
+    console.log(slug)
   }, [])
 
   // function to hit the API for this restaurant's info
@@ -36,6 +37,25 @@ export default function SingleStore() {
     setSelectedTab(input)
   }
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setRestaurant(
+      {
+        ...restaurant,
+        location: {
+          ...restaurant.location,
+          [name]: value
+        }
+      })
+
+    console.log(restaurant)
+
+
+
+
+  }
+
 
 
 
@@ -51,7 +71,10 @@ export default function SingleStore() {
         <div className="content-window">
           {
             selectedTab === 'general-info' ?
-              <GeneralInfo restaurant={restaurant} /> :
+              <GeneralInfo
+                restaurant={restaurant}
+                handleInputChange={handleInputChange}
+              /> :
               "Other Info"
           }
 
