@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import GeneralInfo from '../../components/backend/editor/GeneralInfo';
-import TabNav from '../../components/backend/editor/TabNav';
+import GeneralInfo from '../../components/backend/single-store/GeneralInfo';
+import SingleDayInfo from '../../components/backend/single-store/SingleDayInfo';
+import TabNav from '../../components/backend/single-store/TabNav';
 
 // Utilities
 import API from '../../utils/API';
@@ -11,6 +12,8 @@ export default function SingleStore() {
   const [restaurant, setRestaurant] = useState({})
   const [loading, setLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState('general-info')
+  const [dayIndex, setDayIndex] = useState()
+
 
   // get slug from the URL
   const { slug } = useParams()
@@ -20,6 +23,32 @@ export default function SingleStore() {
     getAPI(slug)
   }, [])
 
+  useEffect(() => {
+    switch (selectedTab) {
+      case "sunday":
+        setDayIndex(0)
+        break;
+      case "monday":
+        setDayIndex(1)
+        break;
+      case "tuesday":
+        setDayIndex(2)
+        break;
+      case "wednesday":
+        setDayIndex(3)
+        break;
+      case "thursday":
+        setDayIndex(4)
+        break;
+      case "friday":
+        setDayIndex(5)
+        break;
+      default:
+        setDayIndex(6)
+        break;
+    }
+  }, [selectedTab])
+
   // function to hit the API for this restaurant's info
   const getAPI = () => {
     API.getRestaurant(slug)
@@ -28,8 +57,7 @@ export default function SingleStore() {
         setLoading(false)
         console.log(res.data)
 
-      })
-      .catch(err => console.log(err))
+      }).catch(err => console.log(err))
   }
 
   const tabChange = (input) => {
@@ -79,6 +107,33 @@ export default function SingleStore() {
         }
       })
 
+    } else if (name === "hh-time") {
+      let allHappyHour = restaurant.happyHour
+      let thisHappyHour = allHappyHour[dayIndex]
+      let thisHappyHourOptions = thisHappyHour.options[0]
+
+      // update the base object with the new value
+      thisHappyHourOptions = {
+        ...thisHappyHourOptions,
+        time: value
+      }
+
+      // modify the options for this happy hour - keep it as an array
+      thisHappyHour = {
+        ...thisHappyHour,
+        options: [thisHappyHourOptions]
+      }
+
+      // need to modify allHappHour so it has the new listing for that day
+      allHappyHour[dayIndex] = thisHappyHour
+
+      // update the new info
+      setRestaurant({
+        ...restaurant,
+        happyHour: allHappyHour
+
+
+      })
     }
   }
 
@@ -102,7 +157,6 @@ export default function SingleStore() {
 
       })
     } else if (name === "gamesBar") {
-      console.log("gamesBar")
       let newValue = !restaurant.features.games.gamesBar
 
       setRestaurant({
@@ -142,7 +196,6 @@ export default function SingleStore() {
 
       })
     } else if (name === 'musicBar') {
-      console.log(event.target.dataset.music)
       let btnClicked = event.target.dataset.music
       if (btnClicked === "liveMusic") {
         let newValue = !restaurant.features.music.liveMusic
@@ -224,7 +277,12 @@ export default function SingleStore() {
                 handleInputChange={handleInputChange}
                 toggleClick={toggleClick}
               /> :
-              "Other Info"
+              <SingleDayInfo
+                restaurant={restaurant}
+                handleInputChange={handleInputChange}
+                toggleClick={toggleClick}
+                dayIndex={dayIndex}
+              />
           }
 
         </div>
