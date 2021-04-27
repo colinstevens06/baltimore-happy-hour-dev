@@ -2,41 +2,12 @@ import React, { useState, useEffect } from 'react'
 
 export default function GeneralInfo(props) {
 
-  const [thisInfo, setThisInfo] = useState({})
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setThisInfo(props.restaurant)
-    setLoading(false)
-    // setStreetAddress(props.restaurant.location.streetLineOne)
-
-
-  }, [])
-
-  // useEffect(() => {
-  //   setLoading(false)
-
-  // }, [thisInfo])
-
-
-
-
-  // i have an object that has all the restaurant info
-
-  // i want to update that info as the user updates the form
-
-  // i want that form info to be a state object that is used to update the DB when the user clicks save
-
-  // so I need to be able to handle input changes at the UI, and when the user updates that info, I need it to update the overarching object
-
-  // what I need to do is figure out how to do it with one line, one input, and then it'll work for all of them
-
-  // first hting i need to do is update the streetInfo, that lives in the overarching location branch of the main object
+  // const [loading, setLoading] = useState(true)
 
 
 
   return (
-    !loading &&
+    // !loading &&
     <form className="grid__general-info">
       {/* LOCATION INFO */}
       <h2 className="col-header">Location</h2>
@@ -71,32 +42,114 @@ export default function GeneralInfo(props) {
       {/* FEATURES INFO */}
       <h2 className="col-header" style={{ marginTop: 25 }}>Features</h2>
 
+      {/* SPORTS INFO */}
       <div className="col-1 label">Sports Bar</div>
       <div className="col-2">
-        <button type="button" className={props.restaurant.features.sports.sportsBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
-        <button type="button" className={props.restaurant.features.sports.sportsBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
+        <button
+          type="button"
+          className={props.restaurant.features.sports.sportsBar === true ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.sports.sportsBar === true ? true : false}
+          onClick={props.toggleClick}
+          name="sportsBar"
+        >Yes</button>
+        <button
+          type="button"
+          className={props.restaurant.features.sports.sportsBar === false ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.sports.sportsBar === false ? true : false}
+          onClick={props.toggleClick}
+          name="sportsBar"
+        >No</button>
       </div>
+      {/* GAMES INFO */}
+
       <div className="col-1 label">Games</div>
       <div className="col-2">
-        <button type="button" className={props.restaurant.features.games.gamesBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
-        <button type="button" className={props.restaurant.features.games.gamesBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
+        <button
+          type="button"
+          className={props.restaurant.features.games.gamesBar === true ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.games.gamesBar === true ? true : false}
+          onClick={props.toggleClick}
+          name="gamesBar"
+        >Yes</button>
+        <button
+          type="button"
+          className={props.restaurant.features.games.gamesBar === false ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.games.gamesBar === false ? true : false}
+          onClick={props.toggleClick}
+          name="gamesBar"
+        >No</button>
       </div>
+      {/* MUSIC INFO */}
+
       <div className="col-1 label">Music</div>
       <div className="col-2">
-        <button type="button" className={props.restaurant.features.music.liveMusic === true ? "yes-no-box selected" : "yes-no-box"}>Live</button>
-        <button type="button" className={props.restaurant.features.music.jukebox === true ? "yes-no-box selected" : "yes-no-box"}>Jukebox</button>
-        <button type="button" className={props.restaurant.features.music.dj === true ? "yes-no-box selected" : "yes-no-box"}>DJ</button>
-        <button type="button" className={props.restaurant.features.music.danceFloor === true ? "yes-no-box selected" : "yes-no-box"}>Dance Floor</button>
+        <button
+          type="button"
+          className={props.restaurant.features.music.liveMusic === true ? "yes-no-box selected" : "yes-no-box"}
+          onClick={props.toggleClick}
+          name="musicBar"
+          data-music="liveMusic"
+        >Live</button>
+        <button
+          type="button"
+          className={props.restaurant.features.music.jukebox === true ? "yes-no-box selected" : "yes-no-box"}
+          onClick={props.toggleClick}
+          name="musicBar"
+          data-music="jukebox"
+        >Jukebox</button>
+        <button
+          type="button"
+          className={props.restaurant.features.music.dj === true ? "yes-no-box selected" : "yes-no-box"}
+          onClick={props.toggleClick}
+          name="musicBar"
+          data-music="dj"
+        >DJ</button>
+        <button
+          type="button"
+          className={props.restaurant.features.music.danceFloor === true ? "yes-no-box selected" : "yes-no-box"}
+          onClick={props.toggleClick}
+          name="musicBar"
+          data-music="danceFloor"
+        >Dance Floor</button>
       </div>
+      {/* OUTDOOR SEATING INFO */}
+
       <div className="col-1 label">Outdoor Seating</div>
       <div className="col-2">
-        <button type="button" className={props.restaurant.features.outdoorSeating === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
-        <button type="button" className={props.restaurant.features.outdoorSeating === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
+        <button
+          type="button"
+          className={props.restaurant.features.outdoorSeating === true ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.outdoorSeating === true ? true : false}
+          onClick={props.toggleClick}
+          name="outdoorSeating"
+        >Yes</button>
+        <button
+          type="button"
+          className={props.restaurant.features.outdoorSeating === false ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.outdoorSeating === false ? true : false}
+          onClick={props.toggleClick}
+          name="outdoorSeating"
+        >No</button>
       </div>
+      {/* TRIVIA INFO */}
+
       <div className="col-1 label">Trivia</div>
       <div className="col-2">
-        <button type="button" className={props.restaurant.features.trivia.triviaBar === true ? "yes-no-box selected" : "yes-no-box"}>Yes</button>
-        <button type="button" className={props.restaurant.features.trivia.triviaBar === false ? "yes-no-box selected" : "yes-no-box"}>No</button>
+        <button
+          type="button"
+          className={props.restaurant.features.trivia.triviaBar === true ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.trivia.triviaBar === true ? true : false}
+          onClick={props.toggleClick}
+          name="triviaBar"
+
+        >Yes</button>
+        <button
+          type="button"
+          className={props.restaurant.features.trivia.triviaBar === false ? "yes-no-box selected" : "yes-no-box"}
+          disabled={props.restaurant.features.trivia.triviaBar === false ? true : false}
+          onClick={props.toggleClick}
+          name="triviaBar"
+        >No</button>
       </div>
 
 

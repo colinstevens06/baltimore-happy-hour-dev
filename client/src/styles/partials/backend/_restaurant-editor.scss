@@ -67,8 +67,12 @@
 
           }
           .selected {
-            background-color: $secondaryColorDark;
+            background-color: $secondaryColor;
             color: $primaryColor;
+            &:hover {
+              transition: .5s;
+              background-color: $secondaryColorDark;
+            }
           }
         }
 

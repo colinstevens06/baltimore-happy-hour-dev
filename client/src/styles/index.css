@@ -337,8 +337,14 @@ a:-webkit-any-link {
 }
 
 .backend-container .tabbed-content-container .content-window .grid__general-info .col-2 .selected {
-  background-color: #1b1b1b;
+  background-color: #424242;
   color: #fff020;
+}
+
+.backend-container .tabbed-content-container .content-window .grid__general-info .col-2 .selected:hover {
+  -webkit-transition: .5s;
+  transition: .5s;
+  background-color: #1b1b1b;
 }
 
 .backend-container .tabbed-content-container .content-window .grid__general-info input {
