@@ -19,7 +19,9 @@ a:-webkit-any-link {
   text-decoration: none;
 }
 
+// Globals
 @import './partials/nav';
+@import './partials/global-components/modal';
 @import './partials/login';
 
 // Backend

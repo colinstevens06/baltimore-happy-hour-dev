@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 import GeneralInfo from '../../components/backend/single-store/GeneralInfo';
 import SingleDayInfo from '../../components/backend/single-store/SingleDayInfo';
 import TabNav from '../../components/backend/single-store/TabNav';
+import Modal from '../../components/global/Modal';
 
 // Utilities
 import API from '../../utils/API';
+
+
 
 export default function SingleStore() {
 
@@ -13,7 +16,8 @@ export default function SingleStore() {
   const [loading, setLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState('general-info')
   const [dayIndex, setDayIndex] = useState()
-
+  const [modalPassAlongInfo, setModalPassAlongInfo] = useState({})
+  const [show, setShow] = useState(false);
 
   // get slug from the URL
   const { slug } = useParams()
@@ -254,42 +258,139 @@ export default function SingleStore() {
 
         })
       }
+    } else if (name === 'hh-today-toggle') {
+      let btnClicked = event.target.dataset.hhtoggle
+      if (btnClicked === 'yes') {
+        console.log(btnClicked)
+        // if someone clicks this button, I need to populate the options for this HH with a standard string, like 'Insert data' but won't let it save if any of the fields have that
+        let allHappyHour = restaurant.happyHour
+        let thisHappyHour = allHappyHour[dayIndex]
+        let thisHappyHourOptions = thisHappyHour.options[0]
+
+        // update the base object with the new value
+        thisHappyHourOptions = {
+          ...thisHappyHourOptions,
+          time: "?-?pm",
+          drinks: ["$"],
+          food: ["$"]
+        }
+
+        // modify the options for this happy hour - keep it as an array
+        thisHappyHour = {
+          ...thisHappyHour,
+          options: [thisHappyHourOptions]
+        }
+
+        // need to modify allHappHour so it has the new listing for that day
+        allHappyHour[dayIndex] = thisHappyHour
+
+        // update the new info
+        setRestaurant({
+          ...restaurant,
+          happyHour: allHappyHour
+
+
+        })
+
+      } else {
+        let btnClicked = event.target.dataset.hhtoggle
+        setModalPassAlongInfo({ btnClicked: btnClicked, name: name })
+        setShow(true)
+      }
+
+    } else if (name === 'specials-today-toggle') {
+      let btnClicked = event.target.dataset.toggle
+
+      let allSpecials
+
     }
   }
 
+  // this handles info from the Modal if someone wants to get rid of a HH or Special
+  const handleClear = (input) => {
+    console.log(input)
+    console.log(input.name)
+
+    if (input.name === "hh-today-toggle" && input.btnClicked === 'no') {
+      let allHappyHour = restaurant.happyHour
+      let thisHappyHour = allHappyHour[dayIndex]
+      let thisHappyHourOptions = thisHappyHour.options[0]
+
+      // update the base object with the new value
+      thisHappyHourOptions = {
+        ...thisHappyHourOptions,
+        time: "",
+        drinks: [],
+        food: []
+      }
+
+      // modify the options for this happy hour - keep it as an array
+      thisHappyHour = {
+        ...thisHappyHour,
+        options: [thisHappyHourOptions]
+      }
+
+      // need to modify allHappHour so it has the new listing for that day
+      allHappyHour[dayIndex] = thisHappyHour
+
+      // update the new info
+      setRestaurant({
+        ...restaurant,
+        happyHour: allHappyHour
 
 
+      })
+    }
+
+    setShow(false)
+  }
 
   return (
     !loading &&
-    <div className="backend-container">
-      <div className="header-row">
-        <h1>{restaurant.name}</h1>
-        <p>Click through the tabs to edit your information. Don’t forget to save!</p>
-      </div>
-      <div className="tabbed-content-container">
-        <TabNav tabChange={tabChange} />
-        <div className="content-window">
-          {
-            selectedTab === 'general-info' ?
-              <GeneralInfo
-                restaurant={restaurant}
-                handleInputChange={handleInputChange}
-                toggleClick={toggleClick}
-              /> :
-              <SingleDayInfo
-                restaurant={restaurant}
-                handleInputChange={handleInputChange}
-                toggleClick={toggleClick}
-                dayIndex={dayIndex}
-              />
-          }
+    <>
+      <div className="backend-container">
+        <div className="header-row">
+          <h1>{restaurant.name}</h1>
+          <p>Click through the tabs to edit your information. Don’t forget to save!</p>
+        </div>
+        <div className="tabbed-content-container">
+          <TabNav tabChange={tabChange} />
+          <div className="content-window">
+            {
+              selectedTab === 'general-info' ?
+                <GeneralInfo
+                  restaurant={restaurant}
+                  handleInputChange={handleInputChange}
+                  toggleClick={toggleClick}
+                /> :
+                <SingleDayInfo
+                  restaurant={restaurant}
+                  handleInputChange={handleInputChange}
+                  toggleClick={toggleClick}
+                  dayIndex={dayIndex}
+                />
+            }
+
+          </div>
+
 
         </div>
 
-      </div>
+      </div >
 
-    </div>
+
+      <Modal open={show}>
+        <h1 style={{ marginBottom: 25, textAlign: "center" }}>Hold up!</h1>
+        <p style={{ marginBottom: 25, textAlign: "center" }}>If you continue, you'll erase your current info for this field. Click continue to erase your HH info for today.</p>
+        <div className="modal-btn-container">
+          <button type="button" onClick={() => setShow(false)}>Cancel</button>
+          <button type="button" onClick={() => handleClear(modalPassAlongInfo)}>Continue</button>
+        </div>
+      </Modal>
+
+
+
+    </>
 
 
   )

@@ -1,0 +1,61 @@
+$modalAnimation: fadein .4s linear;
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  width: 50%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 50px;
+  // opacity: 0;
+  animation: $modalAnimation;
+
+  .modal-btn-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 10px;
+
+      button {
+      cursor: pointer;
+      grid-column: 2/span 5;
+      &:last-of-type {
+        grid-column: 7/span 5;
+      }
+
+      padding: 6px 8px;
+      background-color: $secondaryColorDark;
+      color: $primaryColor;
+      transition: .5s;
+
+      &:hover {
+        background-color: $secondaryColor;
+      }
+      
+    }
+  }
+
+
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, .75);
+  animation: $modalAnimation;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
