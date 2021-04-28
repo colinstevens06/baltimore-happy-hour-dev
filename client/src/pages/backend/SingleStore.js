@@ -16,7 +16,7 @@ export default function SingleStore() {
   const [loading, setLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState('general-info')
   const [dayIndex, setDayIndex] = useState()
-  const [modalPassAlongInfo, setModalPassAlongInfo] = useState({})
+  const [modalPassAlongInfo, setModalPassAlongInfo] = useState()
   const [show, setShow] = useState(false);
 
   // get slug from the URL
@@ -293,25 +293,50 @@ export default function SingleStore() {
         })
 
       } else {
-        let btnClicked = event.target.dataset.hhtoggle
-        setModalPassAlongInfo({ btnClicked: btnClicked, name: name })
+        setModalPassAlongInfo(name)
         setShow(true)
       }
 
     } else if (name === 'specials-today-toggle') {
       let btnClicked = event.target.dataset.toggle
 
-      let allSpecials
+      if (btnClicked === 'yes') {
+        let allSpecials = restaurant.specials
+        let thisSpecial = allSpecials[dayIndex]
+        let newSpecial = thisSpecial.options[0]
+
+        newSpecial = {
+          ...newSpecial,
+          category: ["booze"],
+          items: [" "],
+          name: [" "]
+        }
+
+        thisSpecial = {
+          ...thisSpecial,
+          options: [newSpecial]
+        }
+
+        allSpecials[dayIndex] = thisSpecial
+
+        setRestaurant({
+          ...restaurant,
+          specials: allSpecials
+        })
+
+      } else {
+        setModalPassAlongInfo(name)
+        setShow(true)
+      }
+
 
     }
   }
 
   // this handles info from the Modal if someone wants to get rid of a HH or Special
   const handleClear = (input) => {
-    console.log(input)
-    console.log(input.name)
 
-    if (input.name === "hh-today-toggle" && input.btnClicked === 'no') {
+    if (input === "hh-today-toggle") {
       let allHappyHour = restaurant.happyHour
       let thisHappyHour = allHappyHour[dayIndex]
       let thisHappyHourOptions = thisHappyHour.options[0]
@@ -339,6 +364,29 @@ export default function SingleStore() {
         happyHour: allHappyHour
 
 
+      })
+    } else if (input === "specials-today-toggle") {
+      let allSpecials = restaurant.specials
+      let thisSpecial = allSpecials[dayIndex]
+      let newSpecial = thisSpecial.options[0]
+
+      newSpecial = {
+        ...newSpecial,
+        category: [],
+        items: [],
+        name: []
+      }
+
+      thisSpecial = {
+        ...thisSpecial,
+        options: [newSpecial]
+      }
+
+      allSpecials[dayIndex] = thisSpecial
+
+      setRestaurant({
+        ...restaurant,
+        specials: allSpecials
       })
     }
 
@@ -380,7 +428,7 @@ export default function SingleStore() {
 
 
       <Modal open={show}>
-        <h1 style={{ marginBottom: 25, textAlign: "center" }}>Hold up!</h1>
+        <h2 style={{ marginBottom: 25, textAlign: "center" }}>Hold up!</h2>
         <p style={{ marginBottom: 25, textAlign: "center" }}>If you continue, you'll erase your current info for this field. Click continue to erase your HH info for today.</p>
         <div className="modal-btn-container">
           <button type="button" onClick={() => setShow(false)}>Cancel</button>
