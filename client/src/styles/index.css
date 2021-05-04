@@ -430,6 +430,7 @@ a:-webkit-any-link {
   transition: .2s;
   padding: 4px;
   font-weight: 300;
+  width: 100%;
 }
 
 .backend-container .tabbed-content-container .content-window .grid__general-info input:hover {

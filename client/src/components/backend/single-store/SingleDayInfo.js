@@ -54,9 +54,10 @@ export default function SingleDayInfo(props) {
               onClick={props.toggleClick}
               name="hhToday"
             >No</button>
+            <br style={{ clear: 'both' }} />
             {props.restaurant.happyHour[props.dayIndex].options[0].drinks.length >= 1 && (
-              props.restaurant.happyHour[props.dayIndex].options[0].drinks.map(special => {
-                return <><br /><input type="text" value={special} /></>
+              props.restaurant.happyHour[props.dayIndex].options[0].drinks.map((special, index) => {
+                return <input className="column-2 info" style={{ marginTop: 5 }} type="text" value={special} key={index} data-index={index} name="hh-drinks" onChange={props.handleInputChange} />
               })
             )
             }
@@ -120,11 +121,16 @@ export default function SingleDayInfo(props) {
           <h3 className="col-header">Special #1</h3>
           {/* NAME */}
           <div className="column-1 label">Name</div>
-          <input type="text" className="column-2 info" value={props.restaurant.specials[props.dayIndex].options[0].name} name='streetLineOne' onChange={props.handleInputChange} />
+          <input
+            type="text"
+            className="column-2 info"
+            value={props.restaurant.specials[props.dayIndex].options[0].name} name='streetLineOne' onChange={props.handleInputChange}
+            placeholder="Add a name for tonight's special"
+          />
           <div className="column-1 label">Items</div>
           {
             props.restaurant.specials[props.dayIndex].options[0].items.map(item => {
-              return <input type="text" className="column-2 info" value={item} name='streetLineOne' onChange={props.handleInputChange} />
+              return <input type="text" className="column-2 info" value={item} name='streetLineOne' onChange={props.handleInputChange} placeholder="What's the special?" />
             })
           }
 

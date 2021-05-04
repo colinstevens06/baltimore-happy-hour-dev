@@ -138,6 +138,37 @@ export default function SingleStore() {
 
 
       })
+    } else if (name === "hh-drinks") {
+      console.log('hh-drinks')
+      let allHappyHour = restaurant.happyHour
+      let thisHappyHour = allHappyHour[dayIndex]
+      let thisHappyHourOptions = thisHappyHour.options[0]
+      let drinkIndex = event.target.dataset.index
+      let allDrinks = thisHappyHour.options[0].drinks
+      allDrinks[drinkIndex] = value
+
+
+      // update the base object with the new value
+      thisHappyHourOptions = {
+        ...thisHappyHourOptions,
+        drinks: allDrinks
+      }
+
+
+      // modify the options for this happy hour - keep it as an array
+      thisHappyHour = {
+        ...thisHappyHour,
+        options: [thisHappyHourOptions]
+      }
+
+      // need to modify allHappHour so it has the new listing for that day
+      allHappyHour[dayIndex] = thisHappyHour
+
+      // update the new info
+      setRestaurant({
+        ...restaurant,
+        happyHour: allHappyHour
+      })
     }
   }
 
