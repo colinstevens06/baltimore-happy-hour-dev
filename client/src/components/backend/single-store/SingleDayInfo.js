@@ -131,8 +131,15 @@ export default function SingleDayInfo(props) {
           />
           <div className="column-1 label">Items</div>
           {
-            props.restaurant.specials[props.dayIndex].options[0].items.map(item => {
-              return <input type="text" className="column-2 info" value={item} name='streetLineOne' onChange={props.handleInputChange} placeholder="What's the special?" />
+            props.restaurant.specials[props.dayIndex].options[0].items.map((item, index) => {
+              return <input
+                type="text"
+                className="column-2 info"
+                value={item}
+                name='special-item'
+                data-index={index}
+                onChange={props.handleInputChange}
+                placeholder="What's the special?" />
             })
           }
 

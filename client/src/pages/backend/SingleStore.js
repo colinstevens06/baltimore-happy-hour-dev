@@ -27,6 +27,7 @@ export default function SingleStore() {
     getAPI(slug)
   }, [])
 
+  // switch tabs and update data being displayed
   useEffect(() => {
     switch (selectedTab) {
       case "sunday":
@@ -64,10 +65,12 @@ export default function SingleStore() {
       }).catch(err => console.log(err))
   }
 
+  // handle clicks for when user changes tab
   const tabChange = (input) => {
     setSelectedTab(input)
   }
 
+  // handle changes in the input fields
   const handleInputChange = (event) => {
     // getting info from the input section of the HTML
     const { name, value } = event.target;
@@ -176,13 +179,11 @@ export default function SingleStore() {
       let allFood = thisHappyHour.options[0].food
       allFood[foodIndex] = value
 
-
       // update the base object with the new value
       thisHappyHourOptions = {
         ...thisHappyHourOptions,
         food: allFood
       }
-
 
       // modify the options for this happy hour - keep it as an array
       thisHappyHour = {
@@ -199,12 +200,9 @@ export default function SingleStore() {
         happyHour: allHappyHour
       })
     } else if (name === "special-name") {
-
       let allSpecials = restaurant.specials
       let thisSpecial = allSpecials[dayIndex]
       let thisSpecialOptions = thisSpecial.options[0]
-
-      console.log(thisSpecialOptions)
 
       thisSpecialOptions = {
         ...thisSpecialOptions,
@@ -215,12 +213,33 @@ export default function SingleStore() {
 
       allSpecials[dayIndex] = thisSpecial
 
-      console.log(allSpecials)
+      setRestaurant({
+        ...restaurant,
+        specials: allSpecials
+      })
+    } else if (name === "special-item") {
+      let btnClicked = event.target.dataset.index
+      let allSpecials = restaurant.specials
+      let thisSpecial = allSpecials[dayIndex]
+      let thisSpecialOptions = thisSpecial.options[0]
+      let thisSpecialOptionItems = thisSpecial.options[0].items
+
+      thisSpecialOptionItems[btnClicked] = value
+
+      thisSpecialOptions = {
+        ...thisSpecialOptions,
+        items: thisSpecialOptionItems
+      }
+
+      thisSpecial.options[0] = thisSpecialOptions
+
+      allSpecials[dayIndex] = thisSpecial
 
       setRestaurant({
         ...restaurant,
         specials: allSpecials
       })
+
     }
   }
 
@@ -411,7 +430,6 @@ export default function SingleStore() {
         setModalPassAlongInfo(name)
         setShow(true)
       }
-
 
     }
   }
