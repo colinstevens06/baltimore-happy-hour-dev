@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom'
+
+
+// Components
 import GeneralInfo from '../../components/backend/single-store/GeneralInfo';
 import SingleDayInfo from '../../components/backend/single-store/SingleDayInfo';
 import TabNav from '../../components/backend/single-store/TabNav';
 import Modal from '../../components/global/Modal';
 
+// Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
+
+
+
 // Utilities
 import API from '../../utils/API';
 
-
-
 export default function SingleStore() {
-
   const [restaurant, setRestaurant] = useState({})
   const [loading, setLoading] = useState(true)
   const [selectedTab, setSelectedTab] = useState('general-info')
@@ -498,6 +505,12 @@ export default function SingleStore() {
     !loading &&
     <>
       <div className="backend-container">
+        <div className="back-btn">
+          <Link to="/content-management-system">
+            <FontAwesomeIcon icon={faArrowCircleLeft} />
+
+          </Link>
+        </div>
         <div className="header-row">
           <h1>{restaurant.name}</h1>
           <p>Click through the tabs to edit your information. Don’t forget to save!</p>

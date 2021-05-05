@@ -1,5 +1,12 @@
 .backend-container {
 
+  .back-btn {
+    padding: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   .tabbed-content-container {
     display: grid;
     grid-column: 2 / 3;
