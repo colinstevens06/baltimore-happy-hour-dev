@@ -74,14 +74,16 @@ export default function SingleDayInfo(props) {
               className={props.restaurant.happyHour[props.dayIndex].options[0].food.length >= 1 ? "yes-no-box selected" : "yes-no-box"}
               disabled={props.restaurant.happyHour[props.dayIndex].options[0].food.length >= 1 ? true : false}
               onClick={props.toggleClick}
-              name="hhToday"
+              name="hh-food-toggle"
+              data-toggle='yes'
             >Yes</button>
             <button
               type="button"
               className={props.restaurant.happyHour[props.dayIndex].options[0].food.length === 0 ? "yes-no-box selected" : "yes-no-box"}
               disabled={props.restaurant.happyHour[props.dayIndex].options[0].food.length === 0 ? true : false}
               onClick={props.toggleClick}
-              name="hhToday"
+              name="hh-food-toggle"
+              data-toggle='no'
             >No</button>
             {props.restaurant.happyHour[props.dayIndex].options[0].food.length >= 1 && (
               props.restaurant.happyHour[props.dayIndex].options[0].food.map((special, index) => {
