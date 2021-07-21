@@ -10,6 +10,7 @@ export default function SingleDayInfo(props) {
 
     <form className="grid__general-info">
       <h2 className="col-header">Happy Hour</h2>
+      {/* HH TODAY??? */}
       <div className="column-1 label">HH today?</div>
       <div className="column-2">
         <button
@@ -45,14 +46,16 @@ export default function SingleDayInfo(props) {
               className={props.restaurant.happyHour[props.dayIndex].options[0].drinks.length >= 1 ? "yes-no-box selected" : "yes-no-box"}
               disabled={props.restaurant.happyHour[props.dayIndex].options[0].drinks.length >= 1 ? true : false}
               onClick={props.toggleClick}
-              name="hhToday"
+              name="hh-drinks-toggle"
+              data-toggle='yes'
             >Yes</button>
             <button
               type="button"
               className={props.restaurant.happyHour[props.dayIndex].options[0].drinks.length === 0 ? "yes-no-box selected" : "yes-no-box"}
               disabled={props.restaurant.happyHour[props.dayIndex].options[0].drinks.length === 0 ? true : false}
               onClick={props.toggleClick}
-              name="hhToday"
+              name="hh-drinks-toggle"
+              data-toggle='no'
             >No</button>
             <br style={{ clear: 'both' }} />
             {props.restaurant.happyHour[props.dayIndex].options[0].drinks.length >= 1 && (

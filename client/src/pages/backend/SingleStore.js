@@ -438,6 +438,47 @@ export default function SingleStore() {
         setShow(true)
       }
 
+    } else if (name === 'hh-drinks-toggle') {
+      let btnClicked = event.target.dataset.toggle
+
+      if (btnClicked === 'yes') {
+        console.log('You clicked yes')
+
+        // if someone clicks this button, I need to populate the options for this HH with a standard string, like 'Insert data' but won't let it save if any of the fields have that
+        let allHappyHour = restaurant.happyHour
+        let thisHappyHour = allHappyHour[dayIndex]
+        let thisHappyHourOptions = thisHappyHour.options[0]
+
+        thisHappyHourOptions = {
+          ...thisHappyHourOptions,
+
+          drinks: ["$"],
+
+        }
+
+        // modify the options for this happy hour - keep it as an array
+        thisHappyHour = {
+          ...thisHappyHour,
+          options: [thisHappyHourOptions]
+        }
+
+        // need to modify allHappHour so it has the new listing for that day
+        allHappyHour[dayIndex] = thisHappyHour
+
+        // update the new info
+        setRestaurant({
+          ...restaurant,
+          happyHour: allHappyHour
+
+
+        })
+
+      } else {
+        console.log('You clicked no')
+        setModalPassAlongInfo(name)
+        setShow(true)
+      }
+
     }
   }
 
@@ -495,6 +536,37 @@ export default function SingleStore() {
       setRestaurant({
         ...restaurant,
         specials: allSpecials
+      })
+    } else if (input === "hh-drinks-toggle") {
+      console.log('Handle Clear hh-drinks-toggle')
+
+      let allHappyHour = restaurant.happyHour
+      let thisHappyHour = allHappyHour[dayIndex]
+      let thisHappyHourOptions = thisHappyHour.options[0]
+
+      // update the base object with the new value
+      thisHappyHourOptions = {
+        ...thisHappyHourOptions,
+
+        drinks: [],
+
+      }
+
+      // modify the options for this happy hour - keep it as an array
+      thisHappyHour = {
+        ...thisHappyHour,
+        options: [thisHappyHourOptions]
+      }
+
+      // need to modify allHappHour so it has the new listing for that day
+      allHappyHour[dayIndex] = thisHappyHour
+
+      // update the new info
+      setRestaurant({
+        ...restaurant,
+        happyHour: allHappyHour
+
+
       })
     }
 
